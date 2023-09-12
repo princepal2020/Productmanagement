@@ -129,7 +129,7 @@ namespace Productmanagement.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsallprice;
+        protected global::System.Web.UI.WebControls.Label txtsallprice;
 
         /// <summary>
         /// txtQuantity control.

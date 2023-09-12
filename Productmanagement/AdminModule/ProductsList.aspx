@@ -24,8 +24,12 @@
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs py-5">
                 <div class="w-full overflow-x-auto">
+                 <a  class="btn btn-dark " data-toggle="modal" href="../AddProducts.aspx" style="font-weight: 600;">Add Category<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>   
+
                     <table class="w-full whitespace-no-wrap" style="overflow-x: scroll; overflow-y: scroll" id="myTable">
+
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
                             <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
                                 <HeaderTemplate>
 

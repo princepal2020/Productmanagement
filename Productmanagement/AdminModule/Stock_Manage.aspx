@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Stock_Manage.aspx.cs" Inherits="Productmanagement.AdminModule.Stock_Manage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <style>
+        th {
+            text-align: CENTER;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="pcoded-content">
@@ -89,7 +94,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">MRP : </label>
-                                        <asp:TextBox ID="txtmrp" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtmrp" onkeypress="return number(event)" class="form-control" placeholder="" runat="server"></asp:TextBox>
 
                                     </div>
                                 </div>
@@ -130,13 +135,13 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Purchase Price :</label>
-                                        <asp:TextBox ID="txtpurchase" oninput="CalculateFunction()" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtpurchase" oninput="CalculateFunction()" onkeypress="return number(event)" class="form-control" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Sales Price:</label>
-                                        <asp:TextBox ID="txtsallprice" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:Label ID="txtsallprice" class="form-control" oninput="CalculateFunction()" runat="server"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -150,8 +155,8 @@
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Discount</label>
                                         <div class="input-group-prepend">
-                                            <asp:TextBox ID="txtdiscount" oninput="CalculateFunction()" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
-                                            <asp:DropDownList ID="dd_discounttype" oninput="CalculateFunction()" class="mb-3 form-control" runat="server" Width="100px">
+                                            <asp:TextBox ID="txtdiscount" oninput="CalculateFunction()"  class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
+                                            <asp:DropDownList ID="dd_discounttype"  class="mb-3 form-control" runat="server" Width="100px">
                                                 <asp:ListItem Value="1">PER
                                                 </asp:ListItem>
                                                 <asp:ListItem Value="2">RS</asp:ListItem>
@@ -270,49 +275,36 @@
                         <asp:GridView ID="grid_Stoklist" AutoGenerateColumns="False" Width="100%" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                             <AlternatingRowStyle BackColor="#F7F7F7" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Status">
+                               
+                                <asp:TemplateField HeaderText="Product Code">
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="CheckBox1" runat="server" />
-                                    </ItemTemplate>
-
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%" />
-                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5%" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Profile Image">
-                                    <ItemTemplate>
-                                        <asp:Image ID="Image1" Height="50" Width="50" runat="server" ImageUrl='<%# Eval("User_Image") %>' />
+                                        <asp:Label ID="lblproductcode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="10%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="10%" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="UserId">
+                                <asp:TemplateField HeaderText="Sell Price">
                                     <ItemTemplate>
-                                        <asp:Label ID="lbluserid" runat="server" Text='<%# Eval("UserId") %>'></asp:Label>
+                                        <asp:Label ID="lblsellprice" runat="server" Text='<%# Eval("SellPrice") %>'></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Name">
+                                <asp:TemplateField HeaderText="Quantity">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("UserName") %>'></asp:Label>
+                                        <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Mobile No">
+                                <asp:TemplateField HeaderText="Size Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("Mobile_No") %>'></asp:Label>
+                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("SizeName") %>'></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Email Id">
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("Email_id") %>'></asp:Label>
-                                    </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
-                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
-                                </asp:TemplateField>
+                               
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btn_view" runat="server" CommandName="Update"><i class="fas fa-eye fa-lg"></i></asp:LinkButton>
@@ -362,7 +354,7 @@
             else if (discountType == '2') {
                 C = PurchasePrice - Discount;
                 SalesPrice = C + ((C * Tax) / 100)
-            }
+            }   
             else {
                 C = 0;
             }
@@ -407,10 +399,26 @@
             }
 
         }
+        function number(e) {
+            isIE = document.all ? 1 : 0;
+            keyEntry = !isIE ? e.which : event.keyCode;
+            // Allow digits (0-9), the decimal point (.), and the minus sign (-)
+            if (
+                (keyEntry >= 48 && keyEntry <= 57) || // Digits 0-9
+                keyEntry === 46 || // Decimal point (.)
+                (keyEntry === 45 && e.target.value.indexOf('-') === -1 && e.target.selectionStart === 0) // Minus sign (-) at the beginning
+            ) {
+                return true;
+            } else {
+                e.preventDefault();
+                return false;
+            }
+        }
        // debugger
        ////function calculateSum() {
        ////    var textbox1Value = parseFloat(document.getElementById('textbox1').value) || 0; // Get the value from textbox1, default to 0 if not a valid number.
-       ////    var textbox2Value = parseFloat(document.getElementById('textbox2').value) || 0; // Get the value from textbox2, default to 0 if not a valid number.
+       ////    var textbox2Value = parseFloat(document.getElementById('textbox2').value) || 0; // Get the value from textbox2, default to 0 if not a valid 
+      
 
        ////    var sum = textbox1Value + textbox2Value; // Calculate the sum.
 
