@@ -14,9 +14,17 @@
                 <div class="card">
 
                     <div class="card-body">
+                               <div class="row">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="btn btn-dark"  href="../AdminModule/AddUser.aspx" style="font-weight: 600;margin-left:50%;">Add User <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
 
+                        </div>
+                    </div>
+                       
 
-                        <asp:GridView ID="grid_userlist" AutoGenerateColumns="False" Width="100%" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" OnRowDeleting="grid_userlist_RowDeleting" OnRowEditing="grid_userlist_RowEditing" OnRowUpdating="grid_userlist_RowUpdating">
+                        <asp:GridView ID="grid_userlist" AutoGenerateColumns="False" Width="100%" AllowPaging="true" OnPageIndexChanging="grid_userlist_PageIndexChanging"  PageSize="100" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" OnRowDeleting="grid_userlist_RowDeleting" OnRowEditing="grid_userlist_RowEditing" OnRowUpdating="grid_userlist_RowUpdating">
                             <AlternatingRowStyle BackColor="#F7F7F7" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Status">
@@ -72,10 +80,10 @@
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
                             </Columns>
-                            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-                            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-                            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-                            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                            <FooterStyle BackColor="#B5C7DE" ForeColor="#343a40" />
+                            <HeaderStyle BackColor="#343a40" Font-Bold="True" ForeColor="#F7F7F7" />
+                            <PagerStyle BackColor="#E7E7FF" ForeColor="#343a40" HorizontalAlign="Right" />
+                            <RowStyle BackColor="#E7E7FF" ForeColor="#343a40" />
                             <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
                             <SortedAscendingCellStyle BackColor="#F4F4FD" />
                             <SortedAscendingHeaderStyle BackColor="#5A4C9D" />

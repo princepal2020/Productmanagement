@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Stock_Manage.aspx.cs" Inherits="Productmanagement.AdminModule.Stock_Manage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
+    <style>
         th {
             text-align: CENTER;
         }
@@ -14,13 +14,15 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row  ">
-                            <div class="col-sm-7">
+                            <div class="col-sm-5">
                                 <h5 style="font-weight: 600; font-size: 20px">Stocks Manage</h5>
                             </div>
-                            <div class="col-sm-5 d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive1" style="font-weight: 600;">Add Tax Type <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>
-                                &nbsp; &nbsp;    
-                             <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive" style="font-weight: 600">Add Product Size<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>
+                            <div class="col-sm-7 d-flex justify-content-end">
+                                <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive1" style="font-weight: 600;">Add  Tax Type<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>&nbsp; &nbsp;    
+                                <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive" style="font-weight: 600;">Add Product Size<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>&nbsp; &nbsp;    
+
+                                <a class="btn btn-dark " href="../AdminModule/AddProducts.aspx" style="font-weight: 600;">Add Product <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
+
                             </div>
                         </div>
                     </div>
@@ -59,20 +61,21 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLiveLabel1" style="font-weight: 600; font-size: 15px">Add Tax Type </h5>
+                                                <h5 class="modal-title" id="exampleModalLiveLabel1" style="font-weight: 600; font-size: 15px">Add Quntity  </h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-sm-10 mx-auto">
                                                         <div class="form-group">
-                                                            <label class="floating-label" for="password">CGST :</label>
+                                                            <label class="floating-label" for="password">Product Code :</label>
                                                             <asp:TextBox ID="txtcgst" oninput="myFunction()" class="form-control" placeholder="" runat="server"></asp:TextBox>
                                                         </div>
+
                                                     </div>
                                                     <div class="col-sm-10 mx-auto">
                                                         <div class="form-group">
-                                                            <label class="floating-label" for="password">SGST :</label>
+                                                            <label class="floating-label" for="password">SGST </label>
                                                             <asp:TextBox ID="txtsgst" oninput="myFunction()" class="form-control" placeholder="" runat="server"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -132,6 +135,40 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <div id="modalquntity" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLiveLabel2" style="font-weight: 600; font-size: 15px">Add  Product Size :</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-10 mx-auto">
+                                                        <div class="form-group">
+                                                            <label class="floating-label" for="password">Product Code  :</label>
+                                                            <asp:TextBox ID="txtproductcode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-10 mx-auto">
+                                                        <div class="form-group">
+                                                            <label class="floating-label" for="password">Quntity  :</label>
+                                                            <asp:TextBox ID="txtquntityadd" class="form-control" placeholder="" runat="server"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn  btn-danger" data-dismiss="modal">Cencel</button>
+                                                <asp:Button ID="btn_quntity" Text="Submit" OnClick="btn_quntity_Click"  runat="server" class="btn  btn-success"></asp:Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Purchase Price :</label>
@@ -141,7 +178,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Sales Price:</label>
-                                        <asp:Label ID="txtsallprice" class="form-control" oninput="CalculateFunction()" runat="server"></asp:Label>
+                                        <asp:TextBox ID="txtsallprice" class="form-control" oninput="CalculateFunction()" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -155,8 +192,8 @@
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Discount</label>
                                         <div class="input-group-prepend">
-                                            <asp:TextBox ID="txtdiscount" oninput="CalculateFunction()"  class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
-                                            <asp:DropDownList ID="dd_discounttype"  class="mb-3 form-control" runat="server" Width="100px">
+                                            <asp:TextBox ID="txtdiscount" oninput="CalculateFunction()" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
+                                            <asp:DropDownList ID="dd_discounttype" class="mb-3 form-control" runat="server" Width="100px">
                                                 <asp:ListItem Value="1">PER
                                                 </asp:ListItem>
                                                 <asp:ListItem Value="2">RS</asp:ListItem>
@@ -272,10 +309,10 @@
                     <div class="card-body">
 
 
-                        <asp:GridView ID="grid_Stoklist" AutoGenerateColumns="False" Width="100%" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
+                        <asp:GridView ID="grid_Stoklist" AutoGenerateColumns="False" OnRowCommand="grid_Stoklist_RowCommand" Width="100%" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
                             <AlternatingRowStyle BackColor="#F7F7F7" />
                             <Columns>
-                               
+
                                 <asp:TemplateField HeaderText="Product Code">
                                     <ItemTemplate>
                                         <asp:Label ID="lblproductcode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
@@ -285,7 +322,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Sell Price">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblsellprice" runat="server" Text='<%# Eval("SellPrice") %>'></asp:Label>
+                                        <asp:Label ID="lblsellprice" runat="server" Text='<%#string.Format("{0:n2}", Eval("SellPrice")) %>'></asp:Label>
+
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
@@ -293,6 +331,9 @@
                                 <asp:TemplateField HeaderText="Quantity">
                                     <ItemTemplate>
                                         <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
+                                        <asp:LinkButton ID="btn_quntity" CommandName="quntityupdate" CommandArgument='<%# Eval("ProductCode") %>' runat="server"><i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></asp:LinkButton>
+                                        &nbsp; &nbsp;    
+
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
@@ -304,7 +345,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
-                               
+
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btn_view" runat="server" CommandName="Update"><i class="fas fa-eye fa-lg"></i></asp:LinkButton>
@@ -334,6 +375,8 @@
     </div>
 
     <script type="text/javascript">
+        document.getElementById('<%=txtsallprice.ClientID%>').readOnly = true;
+        document.getElementById('<%=txtproductcode.ClientID%>').readOnly = true;
         function CalculateFunction() {
             debugger
             var PurchasePrice = parseFloat(document.getElementById('<%= txtpurchase.ClientID %>').value);
@@ -354,7 +397,7 @@
             else if (discountType == '2') {
                 C = PurchasePrice - Discount;
                 SalesPrice = C + ((C * Tax) / 100)
-            }   
+            }
             else {
                 C = 0;
             }
@@ -418,7 +461,7 @@
        ////function calculateSum() {
        ////    var textbox1Value = parseFloat(document.getElementById('textbox1').value) || 0; // Get the value from textbox1, default to 0 if not a valid number.
        ////    var textbox2Value = parseFloat(document.getElementById('textbox2').value) || 0; // Get the value from textbox2, default to 0 if not a valid 
-      
+
 
        ////    var sum = textbox1Value + textbox2Value; // Calculate the sum.
 

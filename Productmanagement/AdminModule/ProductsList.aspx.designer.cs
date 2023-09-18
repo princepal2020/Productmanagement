@@ -24,6 +24,15 @@ namespace Productmanagement.AdminModule
         protected global::System.Web.UI.WebControls.Repeater Repeater1;
 
         /// <summary>
+        /// rptPaging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptPaging;
+
+        /// <summary>
         /// lblproductcode control.
         /// </summary>
         /// <remarks>
@@ -87,22 +96,58 @@ namespace Productmanagement.AdminModule
         protected global::System.Web.UI.WebControls.Label lbldetails;
 
         /// <summary>
-        /// Label13 control.
+        /// product_image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label13;
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image1;
 
         /// <summary>
-        /// Label14 control.
+        /// product_image2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image2;
+
+        /// <summary>
+        /// product_image3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image3;
+
+        /// <summary>
+        /// product_image4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image4;
+
+        /// <summary>
+        /// product_image5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image5;
+
+        /// <summary>
+        /// product_image6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage product_image6;
 
         /// <summary>
         /// lblmassege control.

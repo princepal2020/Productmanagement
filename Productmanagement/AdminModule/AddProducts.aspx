@@ -31,8 +31,7 @@
                                         <label class="floating-label" for="Email">Category  :</label>
                                      
                                         <asp:DropDownList ID="category" OnSelectedIndexChanged="category_SelectedIndexChanged" AutoPostBack="true" class="mb-3 form-control" runat="server">
-                                            <asp:ListItem Value="0">Default select
-                                            </asp:ListItem>
+                                 
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -252,7 +251,8 @@
                                             <h1 style="text-align: center; font-weight: 600; font-size: 25px; margin-top: -50px">Good job!</h1>
                                             <%-- <i class="fa-solid fa-circle-check fa-beat fa-2xl" style="color: #70c021";></i>--%>
                                             <h6 style="text-align: center; font-weight: 400; font-size: 18px; margin-top: 15px" runat="server" id="txtmassage"></h6>
-                                            <button type="button" style="" class="btn btn-dark mx-auto mt-4" id="btn_ok" data-dismiss="modal">Ok</button>
+                                            
+                                            <button type="button" style="" runat="server"  id="okdefault"  class="btn btn-dark mx-auto mt-4"  data-dismiss="modal">Ok</button>
                                             <br />
                                         </div>
                                     </div>
@@ -265,7 +265,8 @@
                                             <h1 style="text-align: center; font-weight: 600; font-size: 25px; margin-top: -50px">Oops!!</h1>
                                             <%-- <i class="fa-solid fa-circle-check fa-beat fa-2xl" style="color: #70c021";></i>--%>
                                             <h6 style="text-align: center; font-weight: 400; font-size: 18px; margin-top: 15px">Somthing is wrong</h6>
-                                            <button type="button" style="" class="btn btn-dark mx-auto mt-4" data-dismiss="modal">Ok</button>
+                                            <button type="button" style=""  class="btn btn-dark mx-auto mt-4" data-dismiss="modal">Ok</button>
+                                           
                                             <br />
                                         </div>
                                     </div>
@@ -325,8 +326,9 @@
 
     </div>
     <script type="text/javascript">
+    
         var button = document.getElementById("btn_ok");
-
+        debugger
         // Add a click event listener to the button
         button.addEventListener("click", function () {
             // Redirect to the desired URL

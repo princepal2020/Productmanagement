@@ -114,6 +114,33 @@ namespace Productmanagement.AdminModule
         protected global::System.Web.UI.WebControls.Button btn_sizeSave;
 
         /// <summary>
+        /// txtproductcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtproductcode;
+
+        /// <summary>
+        /// txtquntityadd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtquntityadd;
+
+        /// <summary>
+        /// btn_quntity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_quntity;
+
+        /// <summary>
         /// txtpurchase control.
         /// </summary>
         /// <remarks>
@@ -129,7 +156,7 @@ namespace Productmanagement.AdminModule
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtsallprice;
+        protected global::System.Web.UI.WebControls.TextBox txtsallprice;
 
         /// <summary>
         /// txtQuantity control.

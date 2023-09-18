@@ -387,6 +387,7 @@
     <Folder Include="AdminModule\Images\" />
     <Folder Include="AdminModule\Productsimage\" />
     <Folder Include="AdminModule\Userimage\" />
+    <Folder Include="Modal\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

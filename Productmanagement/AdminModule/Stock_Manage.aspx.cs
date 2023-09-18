@@ -33,16 +33,27 @@ namespace Productmanagement.AdminModule
             try
             {
                 DataTable dtstock = Stocksmanage.GetStocks();
+                //DataTable dataTable;
+                //for (int i = 0; i < dtstock.Rows.Count; i++)
+                //{
+                //    DateTime Epiredate = Convert.ToDateTime(dtstock.Rows[i]["ExpriyDate"]);
+                //    DateTime Todaydate = DateTime.Now.Date;
+                //    if (Todaydate < Epiredate) //if given date is equal to exactly 6 months past from today (change == to > if date has to be less 6 months)
+                //    {
+                        
+                //    }
+
+                //}
                 DataTable dt = Stocksmanage.GetSize();
                 DataTable dt1 = Stocksmanage.GetTaxType();
-                if(dtstock!=null && dtstock.Rows.Count > 0)
+                if (dtstock != null && dtstock.Rows.Count > 0)
                 {
                     grid_Stoklist.DataSource = dtstock;
                     grid_Stoklist.DataBind();
                 }
                 if ((dt != null && dt.Rows.Count > 0) && (dt1 != null && dt.Rows.Count > 0))
                 {
-                  
+
                     dd_taxtype.DataSource = dt1;
                     dd_taxtype.DataTextField = "igst";
                     dd_taxtype.DataValueField = "taxid";
@@ -117,8 +128,8 @@ namespace Productmanagement.AdminModule
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     lblcgst.Text = dt.Rows[0]["cgst"].ToString();
-                    lblsgst.Text= dt.Rows[0]["sgst"].ToString();
-                    lbligst.Text= dt.Rows[0]["igst"].ToString();
+                    lblsgst.Text = dt.Rows[0]["sgst"].ToString();
+                    lbligst.Text = dt.Rows[0]["igst"].ToString();
 
                 }
                 else
@@ -138,25 +149,20 @@ namespace Productmanagement.AdminModule
         {
             try
             {
-                //decimal sellprice = 0;
-                //decimal discout = Convert.ToDecimal(txtdiscount.Text);
-                //if (dd_discounttype.SelectedItem.Text == "PER")
-                //{
-                //    if (discout > 0)
-                //    {
-                //        decimal price = Convert.ToDecimal(txtsallprice.Text);
-                //        string gsit = dd_taxtype.SelectedItem.Text;
-                //        decimal totaldiscount = (price * discout) / 100;
-                //        decimal sell = price - totaldiscount;
 
-                //    }
-                //}
-                //else if(dd_discounttype.SelectedItem.Text == "RS")
-                //{
 
-                //}
-          
                 int result = Stocksmanage.AddStocks(lblproductcode.Text, lblproductsname.Text, lblbradename.Text, txtQuantity.Text, dd_psize.SelectedValue, dd_discounttype.SelectedValue, txtdiscount.Text, txtmrp.Text, txtpurchase.Text, txtsallprice.Text, txtmfg.Text, txtexpire.Text, id, dd_taxtype.SelectedValue);
+                if (result > 0)
+                {
+                    txtmassage.InnerText = "Stock Add has been success ";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
+                    GetSizeTaxType();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal1').modal();", true);
+
+                }
 
 
             }
@@ -164,7 +170,33 @@ namespace Productmanagement.AdminModule
             {
 
             }
-           
+
+        }
+
+        protected void grid_Stoklist_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "quntityupdate")
+            {
+                txtproductcode.Text = e.CommandArgument.ToString();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#modalquntity').modal();", true);
+
+            }
+        }
+
+        protected void btn_quntity_Click(object sender, EventArgs e)
+        {
+            int result = Stocksmanage.AddQuntity(txtproductcode.Text, txtquntityadd.Text);
+            if (result > 0)
+            {
+                txtmassage.InnerText = "Quntity Add has been success ";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
+                GetSizeTaxType();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal1').modal();", true);
+
+            }
         }
     }
 }

@@ -106,5 +106,11 @@ namespace Productmanagement.AdminModule
                 GetUser();
             }
         }
+
+        protected void grid_userlist_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grid_userlist.PageIndex = e.NewPageIndex;
+            GetUser();
+        }
     }
 }

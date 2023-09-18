@@ -9,6 +9,26 @@ namespace Productmanagement.App_Code
 {
     public class ClsStocksmanage : ClsConnectionString
     {
+        public int AddQuntity(string product_code ,string quntity )
+        {
+            try
+            {
+                string constr = getconnection();
+                SqlConnection con = new SqlConnection(constr);
+                SqlCommand cmd = new SqlCommand("Sp_QuntityAdd", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@product_code", product_code);
+                cmd.Parameters.AddWithValue("@quntity", Convert.ToInt32(quntity));
+                con.Open();
+                int result = cmd.ExecuteNonQuery();
+                con.Close();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+        }
         public DataTable GetStocks()
         {
             try

@@ -19,23 +19,31 @@ namespace Productmanagement.AdminModule
         string id = "0";
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             if (!IsPostBack)
             {
+                if (Request.QueryString["product_code"] != null)
+                {
+                    string product_code = Request.QueryString["product_code"].ToString();
+                    btn_submit.Visible = false;
+                    btn_Update.Visible = true;
+                    Productupdate(product_code);
+
+                }
+                else
+                {
+                    btn_Update.Visible = false;
+                }
                 BindCategory();
-                btn_Update.Visible = false;
+             
+               
             }
-            if (Request.QueryString["product_code"] != null)
-            {
-                string product_code = Request.QueryString["product_code"].ToString();
-                btn_submit.Visible = false;
-                btn_Update.Visible = true;
-                Productupdate(product_code);
-            }
+          
 
         }
         protected void Productupdate( string product_code)
         {
-            DataTable dt = addproducts.GetProductcode(product_code);
+            DataTable dt = addproducts.GetProductimagewithcode(product_code);
             if(dt!=null && dt.Rows.Count > 0)
             {
                 txtbrandname.Text = dt.Rows[0]["Brand_Name"].ToString();
@@ -254,11 +262,12 @@ namespace Productmanagement.AdminModule
                         if (result > 0 && result1 > 0)
                         {
                             txtmassage.InnerText = "Product add success" + "\n" + "Product Code " + product_code;
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
                             btn_addstocks.Visible = true;
                             ViewState["product_code"] = product_code;
                             ViewState["brand_name"] = txtbrandname.Text;
                             ViewState["product_name"] = txtproductname.Text;
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
+
                         }
                         else
                         {
@@ -353,6 +362,8 @@ namespace Productmanagement.AdminModule
 
         protected void btn_Update_Click(object sender, EventArgs e)
         {
+
+          
             string product_code = Request.QueryString["product_code"].ToString();
             int minsize = 45 * 1024; int maxsize = 300 * 1024;
             bool status = true; int count = 0; int statuscount = 0;
@@ -523,19 +534,28 @@ namespace Productmanagement.AdminModule
                     filename6 = ViewState["Product_Image6"].ToString();
                 }
             }
-
-            int result = addproducts.productsUpdate(txtbrandname.Text,txtproductname.Text,txtserialno.Text,txtshncode.Text,txtproductDiscriptions.Text,filename1,filename2,filename3,filename4,filename5,filename6, product_code);
-            if (result > 0)
+            if (count == 0 && statuscount == 0)
             {
-                txtmassage.InnerText = "Product has been update success";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
-                //Response.Redirect("../ProductsList.aspx");
+                int result = addproducts.productsUpdate(txtbrandname.Text,txtproductname.Text,txtserialno.Text,txtshncode.Text,txtproductDiscriptions.Text, filename1, filename2, filename3, filename4, filename5, filename6, product_code);
+                if (result > 0)
+                {
+                    txtmassage.InnerText = "Product has been update success";
+                    //btn_ok.Visible = true;
+                    //okdefault.Visible = false;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal').modal();", true);
+                    //Response.Redirect("../ProductsList.aspx");
 
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal1').modal();", true);
+
+                }
             }
             else
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#myModal1').modal();", true);
-
+    
             }
         }
     }

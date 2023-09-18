@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace Productmanagement.App_Code
 {
@@ -21,17 +22,18 @@ namespace Productmanagement.App_Code
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@product_code", product_code);
                 con.Open();
-                int result=cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                 con.Close();
                 return result;
 
 
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 return 0;
             }
         }
-        public int productsUpdate(string  brand_name,string produts_name,string serialno,string shncode,string description,string image1,string image2,string image3,string image4,string image5,string image6,string product_code)
+        public int productsUpdate(string brand_name, string produts_name, string serialno, string shncode, string description, string image1, string image2, string image3, string image4, string image5, string image6, string product_code)
         {
             try
             {
@@ -52,7 +54,7 @@ namespace Productmanagement.App_Code
                 cmd.Parameters.AddWithValue("@Product_Image6", image6);
                 cmd.Parameters.AddWithValue("@Product_code", product_code);
                 con.Open();
-                int result= cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
                 con.Close();
                 return result;
 
@@ -63,7 +65,36 @@ namespace Productmanagement.App_Code
                 return 0;
             }
         }
+
         public DataTable GetProductcode(string productcode)
+        {
+            try
+            {
+                string strcon = getconnection();
+                SqlConnection con = new SqlConnection(strcon);
+                SqlCommand cmd = new SqlCommand("Sp_GetProductid", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Product_code", productcode);
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adp.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    return dt;
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public DataTable GetProductimagewithcode(string productcode)
         {
             try
             {
@@ -174,5 +205,20 @@ namespace Productmanagement.App_Code
                 return 0;
             }
         }
+        public DataSet Searching(string tsxt)
+        {
+            string strcon = getconnection();
+            SqlConnection con = new SqlConnection(strcon);
+            SqlCommand cmd = new SqlCommand("Sp_Searching", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Search", tsxt);
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds;
+        }
+
+
     }
+
 }
