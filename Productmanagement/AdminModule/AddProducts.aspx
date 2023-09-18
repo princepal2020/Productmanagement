@@ -25,8 +25,9 @@
                     <div class="card-body">
                         <for>
                             <div class="row">
-
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                       <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="Email">Category  :</label>
                                      
@@ -124,7 +125,7 @@
                                         <asp:TextBox ID="txtproductname" class="form-control" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                              <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Barcode:</label>
                                         <asp:TextBox ID="txtbarcode" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
@@ -143,7 +144,7 @@
                                         <asp:TextBox ID="txtserialno" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                        <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">HSN Code:</label>
                                         <asp:TextBox ID="txtshncode" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
@@ -161,7 +162,7 @@
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage1" runat="server" />
+                                            <asp:FileUpload class="fileupload" onchange="loadFile(event)" ID="productimage1" runat="server" />
 
                                            <%-- <input type="file" id="fileInput" multiple>
                                             <button id="uploadButton">Upload Images</button>--%>
@@ -172,34 +173,42 @@
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>--%>
                                 </div>
+                                        </div>
+                                </div>
+                             </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                      
+                                
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image Second :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage2" runat="server" /></span>
+                                            <asp:FileUpload class="fileupload" ID="productimage2" onchange="loadFile(event)" runat="server" /></span>
                                     </div>
                                     <%--<div class="custom-file">
                                             <input type="file" class="custom-file-input" id="inputGroupFile02">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>--%>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image Third :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage3" runat="server" /></span>
+                                            <asp:FileUpload class="fileupload" ID="productimage3" onchange="loadFile(event)" runat="server" /></span>
                                     </div>
                                     <%-- <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="inputGroupFile03">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>--%>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image Fourth :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage4" runat="server" /></span>
+                                            <asp:FileUpload class="fileupload" ID="productimage4" onchange="loadFile(event)" runat="server" /></span>
                                     </div>
                                     <%-- <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="inputGroupFile04">
@@ -207,11 +216,11 @@
                                         </div>--%>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image Fifth :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage5" runat="server" /></span>
+                                            <asp:FileUpload class="fileupload" ID="productimage5" onchange="loadFile(event)" runat="server" /></span>
                                     </div>
                                     <%-- <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="inputGroupFile05">
@@ -219,11 +228,11 @@
                                         </div>--%>
                                 </div>
 
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="floating-label" for="Text">Product Image Six :</label>
                                         <span class="input-group-text">
-                                            <asp:FileUpload class="fileupload" ID="productimage6" runat="server" /></span>
+                                            <asp:FileUpload class="fileupload" ID="productimage6" onchange="loadFile(event)" runat="server" /></span>
 
 
                                     </div>
@@ -233,9 +242,7 @@
 
                                         </div>--%>
                                 </div>
-
-
-                                <div class="col-sm-4">
+                                             <div class="col-sm-6 py-1">
                                     <div class="form-group mt-4">
                                         <asp:Button ID="btn_reset" runat="server" class="btn  btn-danger" Text="Reset"></asp:Button>
                                         <asp:Button ID="btn_addstocks" runat="server" class="btn  btn-primary" Visible="false" OnClick="btn_addstocks_Click" Text="Add Stocks"></asp:Button>
@@ -243,6 +250,22 @@
                                         <asp:Button ID="btn_submit" Text="Submit" OnClick="btn_submit_Click" runat="server" class="btn  btn-success"></asp:Button>
                                     </div>
                                 </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-sm-4 mx-auto">
+                                    <div class="row">
+                                        <div class="row" style="width: 100%">
+                                                        <div class="col-sm-12">
+                                                            <img src="../assets/img/top-view-perfectly-ordered-fitness-items.jpg" id="output" style="width: 100%; height: 220px" />
+                                                            
+                                                        </div>
+                                                       
+                                                    </div>
+                                    </div>
+                                </div>
+                            
+                               
                                 <div id="myModal" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content" style="border-radius: 5px 5px; margin-top: 10rem">
@@ -272,52 +295,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div id="preview" runat="server"></div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="card-body" style="padding: 7px">
-                                        <div class="card mb-3">
-                                            <img class="img-fluid card-img-top" src="assets/images/slider/img-slide-3.jpg" alt="Card image cap">
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            
                     </div>
                 </div>
 
@@ -326,6 +304,62 @@
 
     </div>
     <script type="text/javascript">
+        var loadFile = function (event) {
+            var image = document.getElementById("output");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        var m1, m2, m3, m4, m5, m6;
+        var f1 = document.getElementById("productimage1");
+        var f2 = document.getElementById("productimage2");
+        var f3 = document.getElementById("productimage3");
+        var f4 = document.getElementById("productimage4");
+        var f5 = document.getElementById("productimage5");
+        var f6 = document.getElementById("productimage6");
+        var v1 = document.getElementById("1");
+        f1.addEventListener("change", function (e) {
+            m1 = new FileReader();
+            m1.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m1.readAsDataURL(this.files[0]);
+        });
+        f2.addEventListener("change", function (e) {
+            m2 = new FileReader();
+            m2.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m2.readAsDataURL(this.files[0]);
+            v1.setAttribute('data-active', 'active');
+        });
+        f3.addEventListener("change", function (e) {
+            m3 = new FileReader();
+            m3.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m3.readAsDataURL(this.files[0]);
+        });
+        f4.addEventListener("change", function (e) {
+            m4 = new FileReader();
+            m4.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m4.readAsDataURL(this.files[0]);
+        });
+        f5.addEventListener("change", function (e) {
+            m5 = new FileReader();
+            m5.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m5.readAsDataURL(this.files[0]);
+        });
+        f6.addEventListener("change", function (e) {
+            m6 = new FileReader();
+            m6.onload = function (e) {
+                v1.src = e.target.result;
+            };
+            m6.readAsDataURL(this.files[0]);
+        });
     
         var button = document.getElementById("btn_ok");
         debugger

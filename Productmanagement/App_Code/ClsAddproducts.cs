@@ -72,7 +72,7 @@ namespace Productmanagement.App_Code
             {
                 string strcon = getconnection();
                 SqlConnection con = new SqlConnection(strcon);
-                SqlCommand cmd = new SqlCommand("Sp_GetProductid", con);
+                SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGetUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Product_code", productcode);
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -205,17 +205,18 @@ namespace Productmanagement.App_Code
                 return 0;
             }
         }
-        public DataSet Searching(string tsxt)
+        public DataTable Searching(string tsxt)
         {
             string strcon = getconnection();
             SqlConnection con = new SqlConnection(strcon);
             SqlCommand cmd = new SqlCommand("Sp_Searching", con);
+            
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Search", tsxt);
             SqlDataAdapter adp = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds;
+            DataTable dt = new DataTable();
+            adp.Fill(dt);
+            return dt;
         }
 
 

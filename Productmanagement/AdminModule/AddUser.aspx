@@ -81,7 +81,7 @@
                                    <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Password:</label>
-                                        <asp:TextBox ID="txtpassword" class="form-control" TextMode="Date" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtpassword" class="form-control" TextMode="Password"  placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -99,7 +99,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Branch Details :</label>
-                                        <asp:TextBox ID="txtbrachdetails" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtbrachdetails" class="form-control"  placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -124,7 +124,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">City :</label>
-                                        <asp:TextBox ID="txtcity" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtcity" class="form-control"  placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">

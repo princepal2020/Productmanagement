@@ -265,7 +265,19 @@ namespace Productmanagement.App_Code
                 return null;
             }
         }
+        public DataTable Searching(string tsxt)
+        {
+            string strcon = getconnection();
+            SqlConnection con = new SqlConnection(strcon);
+            SqlCommand cmd = new SqlCommand("Sp_UserSearch", con);
 
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Search", tsxt);
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adp.Fill(dt);
+            return dt;
+        }
     }
 }
 

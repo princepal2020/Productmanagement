@@ -3,10 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+
+using System.Web.UI;
+using System.Text;
 
 namespace Productmanagement.AdminModule
 {
@@ -99,16 +103,27 @@ namespace Productmanagement.AdminModule
            
             try
             {
-               // DataSet ds = addproducts.Searching(txtsearch.Text);
+                DataTable ds = addproducts.Searching(txtsearch.Text);
                 DataTable dt = addproducts.Getaddpimagejoin();
                
                 if (dt.Rows.Count > 0)
                 {
-                  
                     
-                    PagedDataSource pgitems = new PagedDataSource();
-                    pgitems.DataSource = dt.DefaultView;
-                    pgitems.AllowPaging = true;
+                        PagedDataSource pgitems = new PagedDataSource();
+                    if(txtsearch.Text!=null && txtsearch.Text != "")
+                    {
+                        pgitems.DataSource = ds.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+                    else
+                    {
+                        pgitems.DataSource = dt.DefaultView;
+                        pgitems.AllowPaging = true;
+                    }
+                        
+                   
+
+                   
 
                     //control page size from here 
                     pgitems.PageSize = 5;
@@ -128,8 +143,8 @@ namespace Productmanagement.AdminModule
                     {
                         rptPaging.Visible = false;
                     }
-                  
-                 
+
+                   
                         Repeater1.DataSource = pgitems;
                         Repeater1.DataBind();
                     
@@ -157,6 +172,44 @@ namespace Productmanagement.AdminModule
             getallusers(pagenumber);
         }
 
-      
+        protected void btn_excel_Click(object sender, EventArgs e)
+        {
+
+           
+            DataTable dt = addproducts.Getaddpimagejoin();
+            StringBuilder csvData = new StringBuilder();
+
+            // Add column headers
+            csvData.AppendLine("Product Code,Product Name,Brand Name,Brand Name,HSN Code,Serial No,Product Barcode,Product details"); // Replace with your column names
+
+            // Iterate through Repeater items and append data
+            for(int i = 0; i<dt.Rows.Count;i++)
+            {
+                string product_code = dt.Rows[i]["product_code"].ToString(); // Replace with the actual control IDs
+                string product_name = dt.Rows[i]["product_name"].ToString();
+                string Brand_name = dt.Rows[i]["Brand_name"].ToString();
+                string Product_HSN_ode = dt.Rows[i]["Product_HSN_ode"].ToString();
+                string Product_serial_No = dt.Rows[i]["Product_serial_No"].ToString();
+                string Product_varcode = dt.Rows[i]["Product_varcode"].ToString();
+                string Product_details = dt.Rows[i]["Product_details"].ToString();
+
+                // Append data to the CSV string
+                csvData.AppendLine($"{product_code},{product_name},{Brand_name},{Product_HSN_ode},{Product_serial_No},{Product_varcode},{Product_details}");
+            }
+
+            // Send the data as a CSV file to the client
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment;filename=data.csv");
+            Response.Charset = "";
+            Response.Output.Write(csvData.ToString());
+            Response.End();
+        }
+
+        protected void btn_search_Click(object sender, EventArgs e)
+        {
+            getallusers(0);
+        }
     }
 }

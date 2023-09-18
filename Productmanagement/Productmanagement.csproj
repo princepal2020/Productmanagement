@@ -244,6 +244,7 @@
     <Content Include="assets\img\github.svg" />
     <Content Include="assets\img\login-office-dark.jpeg" />
     <Content Include="assets\img\login-office.jpeg" />
+    <Content Include="assets\img\top-view-perfectly-ordered-fitness-items.jpg" />
     <Content Include="assets\img\twitter.svg" />
     <Content Include="assets\js\charts-bars.js" />
     <Content Include="assets\js\charts-lines.js" />
@@ -306,6 +307,7 @@
     <Compile Include="App_Code\ClsLogin.cs" />
     <Compile Include="App_Code\ClsStocksmanage.cs" />
     <Compile Include="App_Code\ClsUser.cs" />
+    <Content Include="App_Code\Searching.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

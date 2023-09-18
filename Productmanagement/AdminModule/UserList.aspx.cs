@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -25,12 +26,18 @@ namespace Productmanagement.AdminModule
             try
             {
                 DataTable dt = clsUser.Getuser();
-                if (dt != null && dt.Rows.Count > 0)
+                DataTable dt1 = clsUser.Searching(txtsearch.Text);
+                if (dt1.Rows.Count > 0)
+                {
+                    grid_userlist.DataSource = dt1;
+                    grid_userlist.DataBind();
+                }
+              else  if (dt != null && dt.Rows.Count > 0)
                 {
                     grid_userlist.DataSource = dt;
                     grid_userlist.DataBind();
                 }
-                else
+                else 
                 {
 
                 }
@@ -110,6 +117,53 @@ namespace Productmanagement.AdminModule
         protected void grid_userlist_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grid_userlist.PageIndex = e.NewPageIndex;
+            GetUser();
+        }
+        protected void btn_excel_Click(object sender, EventArgs e)
+        {
+
+
+            DataTable dt = clsUser.Getuser();
+            StringBuilder csvData = new StringBuilder();
+
+            // Add column headers
+            csvData.AppendLine("User Name ,Mobile No ,Email Id,Aadhar No,Pan Card No,GSTIN No,Dob,Company Name, Address, State, District, City"); // Replace with your column names
+           
+
+            // Iterate through Repeater items and append data
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataTable dts = clsUser.Getstatewithid(dt.Rows[0]["State"].ToString());
+                DataTable dtd = clsUser.Getdistrictwithid(dt.Rows[0]["distric"].ToString());
+                string UserName = dt.Rows[i]["UserName"].ToString(); // Replace with the actual control IDs
+                string Mobile_No = dt.Rows[i]["Mobile_No"].ToString();
+                string Email_id = dt.Rows[i]["Email_id"].ToString();
+                string Aadhar_No = dt.Rows[i]["Aadhar_No"].ToString();
+                string Pancard_No = dt.Rows[i]["Pancard_No"].ToString();
+                string Gstin_no = dt.Rows[i]["Gstin_no"].ToString();
+                string Dob = dt.Rows[i]["Dob"].ToString();
+                string Company_Name = dt.Rows[i]["Company_Name"].ToString();
+                string Address = dt.Rows[i]["Address"].ToString();
+                string State_name = dts.Rows[i]["State_name"].ToString();
+                string District_Name = dtd.Rows[i]["District_Name"].ToString();
+                string city = dt.Rows[i]["city"].ToString();
+           
+
+                // Append data to the CSV string
+                csvData.AppendLine($"{UserName},{Mobile_No},{Email_id},{Aadhar_No},{Pancard_No},{Gstin_no},{Dob},{Company_Name},{Address},{State_name},{District_Name},{city}");
+            }
+
+            // Send the data as a CSV file to the client
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ContentType = "text/csv";
+            Response.AddHeader("content-disposition", "attachment;filename=data.csv");
+            Response.Charset = "";
+            Response.Output.Write(csvData.ToString());
+            Response.End();
+        }
+        protected void btn_search_Click(object sender, EventArgs e)
+        {
             GetUser();
         }
     }

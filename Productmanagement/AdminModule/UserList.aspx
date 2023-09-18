@@ -5,6 +5,7 @@
         th {
             text-align: CENTER;
         }
+      
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,17 +15,25 @@
                 <div class="card">
 
                     <div class="card-body">
-                               <div class="row">
-                        <div class="col-sm-8">
-                        </div>
-                        <div class="col-sm-4">
-                            <a class="btn btn-dark"  href="../AdminModule/AddUser.aspx" style="font-weight: 600;margin-left:50%;">Add User <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="row" style="margin-bottom:3px;margin-left:10px">
+                                    <asp:TextBox placeholder="Search Here....!!" CssClass="form-control col-sm-4" ID="txtsearch" OnTextChanged="btn_search_Click" AutoPostBack="true" runat="server" />
+                                    &nbsp;  &nbsp;
+                           <asp:Button ID="btn_search" runat="server" CssClass="btn btn-secondary col-sm-2" OnClick="btn_search_Click" Text="Search" />
 
-                        </div>
-                    </div>
-                       
+                                </div>
 
-                        <asp:GridView ID="grid_userlist" AutoGenerateColumns="False" Width="100%" AllowPaging="true" OnPageIndexChanging="grid_userlist_PageIndexChanging"  PageSize="100" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" OnRowDeleting="grid_userlist_RowDeleting" OnRowEditing="grid_userlist_RowEditing" OnRowUpdating="grid_userlist_RowUpdating">
+                            </div>
+                            <div class="col-sm-4">
+                                <asp:Button ID="btn_excel" Text="Export Excel" runat="server" class="btn btn-success" OnClick="btn_excel_Click" />
+                                <a class="btn btn-dark" href="../AdminModule/AddUser.aspx" style="font-weight: 600;">Add User <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
+
+                            </div>
+                        </div>
+
+
+                        <asp:GridView ID="grid_userlist" AutoGenerateColumns="False" Width="100%" AllowPaging="true" OnPageIndexChanging="grid_userlist_PageIndexChanging" PageSize="100" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" OnRowDeleting="grid_userlist_RowDeleting" OnRowEditing="grid_userlist_RowEditing" OnRowUpdating="grid_userlist_RowUpdating">
                             <AlternatingRowStyle BackColor="#F7F7F7" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Status">
@@ -72,9 +81,9 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="btn_view" runat="server" CommandName="Update"><i class="fas fa-eye fa-lg"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btn_edit" CommandName="Edit" runat="server"><i class="fas fa-edit fa-lg"></i></asp:LinkButton>
-                                        <asp:LinkButton ID="btn_delete" CommandName="Delete" runat="server"><i class="fas fa-trash fa-lg"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btn_view" runat="server"  CommandName="Update"><i style="color:#373a3c!important" class="fas fa-eye fa-lg"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btn_edit" CommandName="Edit" runat="server"><i style="color:#373a3c!important" class="fas fa-edit fa-lg"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btn_delete" CommandName="Delete" runat="server"><i style="color:#373a3c!important" class="fas fa-trash fa-lg"></i></asp:LinkButton>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
@@ -164,7 +173,7 @@
                                             <asp:Label ID="lblpassword" runat="server" Text="Label"></asp:Label>
                                         </div>
                                     </div>
-                                       <div class="col-sm-4 mx-auto">
+                                    <div class="col-sm-4 mx-auto">
                                         <div class="form-group">
                                             <label class="floating-label" for="password"><b>State :</b></label>
                                             <asp:Label ID="lblstate" runat="server" Text="Label"></asp:Label>
@@ -200,37 +209,37 @@
                                             <asp:Label ID="lblbranch" runat="server" Text="Label"></asp:Label>
                                         </div>
                                     </div>
-                                    </div>
-                                 
-                                    <div class="row">
-                                        <div class="col-sm-3 mx-auto">
-                                            <div class="form-group">
-                                                <label class="floating-label" for="password"><b>User Image:</b></label><br />
-                                                <img  class="image" src="#" height="150" style="border-radius:4px 4px" width="200" runat="server" id="userimg" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 mx-auto">
-                                            <div class="form-group">
-                                                <label class="floating-label" for="password"><b>Aadhar Fornt Image:</b></label><br />
-                                                <img class="circle" src="#" height="150" style="border-radius:4px 4px" width="200" runat="server" id="adharfornt" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 mx-auto">
-                                            <div class="form-group">
-                                                <label class="floating-label" for="password"><b>Aadhar Back Image:</b></label><br />
-                                                <img class="circle" src="#" height="150" width="200" runat="server" id="adharback" />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 mx-auto">
-                                            <div class="form-group">
-                                                <label class="floating-label" for="password"><b>Pan Card Iamge :</b></label><br />
-                                                <img class="circle" src="#" height="150" width="200" runat="server" id="panimg" />
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
-                         
+
+                                <div class="row">
+                                    <div class="col-sm-3 mx-auto">
+                                        <div class="form-group">
+                                            <label class="floating-label" for="password"><b>User Image:</b></label><br />
+                                            <img class="image" src="#" height="150" style="border-radius: 4px 4px" width="200" runat="server" id="userimg" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 mx-auto">
+                                        <div class="form-group">
+                                            <label class="floating-label" for="password"><b>Aadhar Fornt Image:</b></label><br />
+                                            <img class="circle" src="#" height="150" style="border-radius: 4px 4px" width="200" runat="server" id="adharfornt" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 mx-auto">
+                                        <div class="form-group">
+                                            <label class="floating-label" for="password"><b>Aadhar Back Image:</b></label><br />
+                                            <img class="circle" src="#" height="150" width="200" runat="server" id="adharback" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 mx-auto">
+                                        <div class="form-group">
+                                            <label class="floating-label" for="password"><b>Pan Card Iamge :</b></label><br />
+                                            <img class="circle" src="#" height="150" width="200" runat="server" id="panimg" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                             </div>
@@ -248,7 +257,7 @@
                                 <div class="row">
                                     <div class="col-sm-8 mx-auto">
                                         <div class="form-group">
-                                            <img src="assets/images/giphy.gif" height="100" width="100" style="margin-left:35%" />
+                                            <img src="assets/images/giphy.gif" height="100" width="100" style="margin-left: 35%" />
                                             <asp:Label ID="lblmassege" runat="server" Visible="false"></asp:Label>
                                             <h4 style="font-size: 16px; text-align: center; font-weight: 600">Are you sure you want to delete?</h4>
                                         </div>
@@ -258,7 +267,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                                <asp:Button ID="btn_delete" OnClick="btn_delete_Click" CssClass="btn btn-danger"  runat="server" Text="Delete" />
+                                <asp:Button ID="btn_delete" OnClick="btn_delete_Click" CssClass="btn btn-danger" runat="server" Text="Delete" />
                             </div>
                         </div>
                     </div>

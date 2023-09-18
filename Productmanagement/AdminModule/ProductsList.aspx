@@ -16,6 +16,7 @@
             margin-left: 40%;
             font-size: 16px;
         }
+         
         
     </style>
 </asp:Content>
@@ -27,12 +28,19 @@
                 <div class="w-full overflow-x-auto">
                     <div class="row" style="margin-bottom: 5px">
                         <div class="col-sm-4">
+                            <div class="row" style="margin-left:3px">
+                                &nbsp; <asp:TextBox  placeholder="Search Here....!!" CssClass="form-control col-sm-7" ID="txtsearch" OnTextChanged="btn_search_Click" AutoPostBack="true" runat="server" />  &nbsp;  &nbsp;
+                            <asp:Button ID="btn_search" runat="server" CssClass="btn btn-secondary col-sm-4" OnClick="btn_search_Click" Text="Search"/>
+                            </div>
                             <%-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">--%>
-                            <asp:TextBox onkeyup="Search_Gridview(this)" placeholder="Search Here....!!" CssClass="form-control col-sm-8" runat="server" />
+                           
                         </div>
-                        <div class="col-sm-4"></div>
                         <div class="col-sm-4">
-                            <a class="btn btn-dark" href="../AdminModule/AddProducts.aspx" style="font-weight: 600; margin-left: 55%;">Add Product <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <asp:Button ID="btn_excel" Text="Export Excel" runat="server" class="btn btn-success" OnClick="btn_excel_Click" />
+                            <a class="btn btn-dark" href="../AdminModule/AddProducts.aspx" style="font-weight: 600;">Add Product <i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></a>
 
                         </div>
                     </div>
@@ -77,13 +85,13 @@
                                             </div>
                                         </td>
                                         <td class="py-3 text-sm" style="width: 15%; text-align: center">
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Product_Name") %>'></asp:Label>
+                                            <asp:Label ID="lblproduct_name" runat="server" Text='<%# Eval("Product_Name") %>'></asp:Label>
                                         </td>
                                         <td class="py-3 text-sm" style="width: 15%; text-align: center">
-                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Brand_Name") %>'></asp:Label>
+                                            <asp:Label ID="lblbrand" runat="server" Text='<%# Eval("Brand_Name") %>'></asp:Label>
                                         </td>
                                         <td class="py-3 text-sm" style="width: 16%; text-align: center">
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Product_code") %>'></asp:Label>
+                                            <asp:Label ID="lnlproducts" runat="server" Text='<%# Eval("Product_code") %>'></asp:Label>
                                         </td>
                                         <td class="py-3 text-xs" style="width: 16%; text-align: center">
                                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">

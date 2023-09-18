@@ -5,6 +5,7 @@
         th {
             text-align: CENTER;
         }
+      
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -135,7 +136,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div id="modalquntity" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+                                <div id="modalquntity" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -164,7 +165,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn  btn-danger" data-dismiss="modal">Cencel</button>
-                                                <asp:Button ID="btn_quntity" Text="Submit" OnClick="btn_quntity_Click"  runat="server" class="btn  btn-success"></asp:Button>
+                                                <asp:Button ID="btn_quntity" Text="Submit" OnClick="btn_quntity_Click" runat="server" class="btn  btn-success"></asp:Button>
                                             </div>
                                         </div>
                                     </div>
@@ -307,6 +308,22 @@
                 <div class="card">
 
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="row mx-auto py-1">
+                                     <asp:TextBox placeholder="Search Here....!!" CssClass="form-control col-sm-4" ID="txtsearch" OnTextChanged="btn_search_Click" AutoPostBack="true" runat="server" />
+                                &nbsp;  &nbsp;
+                            <asp:Button ID="btn_search" runat="server" CssClass="btn btn-secondary col-sm-2" OnClick="btn_search_Click" Text="Search" />
+
+                                </div>
+                               
+                            </div>
+                            <div class="col-sm-4 mx-auto">
+                                 <div class="row mx-auto py-1">
+                                <asp:Button ID="btn_excel" Text="Export Excel" runat="server" class="btn btn-success" OnClick="btn_excel_Click" />
+</div>
+                            </div>
+                        </div>
 
 
                         <asp:GridView ID="grid_Stoklist" AutoGenerateColumns="False" OnRowCommand="grid_Stoklist_RowCommand" Width="100%" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal">
@@ -346,7 +363,7 @@
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Action">
+                                <%--                                <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btn_view" runat="server" CommandName="Update"><i class="fas fa-eye fa-lg"></i></asp:LinkButton>
                                         <asp:LinkButton ID="btn_edit" CommandName="Edit" runat="server"><i class="fas fa-edit fa-lg"></i></asp:LinkButton>
@@ -354,7 +371,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="15%" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                             </Columns>
                             <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
                             <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
