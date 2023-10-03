@@ -34,20 +34,31 @@ namespace Productmanagement.App_Code
         {
             try
             {
-                string strcon = getconnection();
-                SqlConnection con = new SqlConnection(strcon);
-                SqlCommand cmd = new SqlCommand("SP_CategoryGet", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adp.Fill(dt);
-                return dt;  
-                
+                commandname = "SP_CategoryGet";
+                DataTable dt = GetWithoutParameter();
+                return dt;
+
             }
             catch (Exception ex)
             {
                 return null;
             }
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("SP_CategoryGet", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
         }
         public DataTable GetSubCategoty( string categoryid)
         {

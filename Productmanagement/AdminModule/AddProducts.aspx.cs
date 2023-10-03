@@ -15,11 +15,12 @@ namespace Productmanagement.AdminModule
         ClsAddproducts addproducts = new ClsAddproducts();
         Clsdefferentmethode clsdefferent = new Clsdefferentmethode();
         ClsAddCategory_SubCategory clsAddCategory_ = new ClsAddCategory_SubCategory();
-        //string id = Session["id"].ToString();
-        string id = "0";
+
+      
         protected void Page_Load(object sender, EventArgs e)
         {
            
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["product_code"] != null)
@@ -43,6 +44,7 @@ namespace Productmanagement.AdminModule
         }
         protected void Productupdate( string product_code)
         {
+            
             DataTable dt = addproducts.GetProductimagewithcode(product_code);
             if(dt!=null && dt.Rows.Count > 0)
             {
@@ -98,7 +100,7 @@ namespace Productmanagement.AdminModule
 
             try
             {
-
+                string id = Session["id"].ToString();
                 Random random = new Random();
                 string product_code = "wts" + DateTime.Now.ToString("ddMMyyyy") + random.Next(10000, 99999).ToString();
                 int minsize = 45 * 1024; int maxsize = 300 * 1024;
@@ -290,6 +292,7 @@ namespace Productmanagement.AdminModule
 
         protected void btn_CSave_Click(object sender, EventArgs e)
         {
+            string id = Session["id"].ToString();
             int result = clsAddCategory_.AddCategory(txtcategoryname.Text, txtDescription.Text, id);
             if (result > 0)
             {
@@ -307,6 +310,7 @@ namespace Productmanagement.AdminModule
 
         protected void btn_sbSave_Click(object sender, EventArgs e)
         {
+            string id = Session["id"].ToString();
             int result = clsAddCategory_.AddSubCategory(dd_seletcategory.SelectedValue, txtsubcategoryname.Text, txtsubDescription.Text, id);
             if (result > 0)
             {

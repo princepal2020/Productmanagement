@@ -14,23 +14,42 @@ namespace Productmanagement.AdminModule
     {
         ClsStocksmanage Stocksmanage = new ClsStocksmanage();
         //string id = Session["id"].ToString();
-        string id = "0";
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            string productcode = Request.QueryString["productscode"];
-            string brand_name = Request.QueryString["brand_name"];
-            string product_name = Request.QueryString["product_name"];
-            lblproductcode.Text = productcode;
-            lblproductsname.Text = product_name;
-            lblbradename.Text = brand_name;
+
+
+            QueryStrigGet();
             if (!IsPostBack)
             {
                 GetSizeTaxType();
             }
         }
+        public void QueryStrigGet()
+        {
+            try
+            {
+                if (Request.QueryString.Count > 0)
+                {
+                    string productcode = Request.QueryString["productscode"].ToString();
+                    string brand_name = Request.QueryString["brand_name"].ToString();
+                    string product_name = Request.QueryString["product_name"].ToString();
+                    lblproductcode.Text = productcode;
+                    lblproductsname.Text = product_name;
+                    lblbradename.Text = brand_name;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
+        }
 
         public void GetSizeTaxType()
         {
+
+          
             try
             {
                 DataTable dtstock = Stocksmanage.GetStocks();
@@ -107,6 +126,7 @@ namespace Productmanagement.AdminModule
 
         protected void btn_sizeSave_Click(object sender, EventArgs e)
         {
+            string id = Session["id"].ToString();
             int result = Stocksmanage.AddSize(txtproductsize.Text, txtdecription.Text, id);
             if (result > 0)
             {
@@ -123,6 +143,7 @@ namespace Productmanagement.AdminModule
 
         protected void btn_gsttype_Click(object sender, EventArgs e)
         {
+            string id = Session["id"].ToString();
             int result = Stocksmanage.AddTax(txtcgst.Text, txtsgst.Text, lbligst.Text, id);
             if (result > 0)
             {
@@ -167,6 +188,7 @@ namespace Productmanagement.AdminModule
             try
             {
 
+                string id = Session["id"].ToString();
 
                 int result = Stocksmanage.AddStocks(lblproductcode.Text, lblproductsname.Text, lblbradename.Text, txtQuantity.Text, dd_psize.SelectedValue, dd_discounttype.SelectedValue, txtdiscount.Text, txtmrp.Text, txtpurchase.Text, txtsallprice.Text, txtmfg.Text, txtexpire.Text, id, dd_taxtype.SelectedValue);
                 if (result > 0)

@@ -20,18 +20,39 @@ namespace Productmanagement
 
         protected void btn_Login_Click(object sender, EventArgs e)
         {
-            DataTable dt = clsLogin.UserLogin(txtmobile.Text,txtpassword.Text);
-            if(dt!=null && dt.Rows.Count > 0)
+            DataTable dt = clsLogin.UserLogin(txtmobile.Text, txtpassword.Text);
+            if (dt != null && dt.Rows.Count > 0)
             {
-                Session["mobile"] = txtmobile.Text;
-                Session["id"] = dt.Rows[0]["id"].ToString();
-                Response.Redirect("AdminModule/Deshboard.aspx");
-            }
-            else
-            {
-                 Response.Write("<script>alert('Userid Or Password Wrong');</script>");
-            }
+                int usertype = Convert.ToInt32(dt.Rows[0]["User_Type"]);
+                if (usertype == 1)
+                {
+                    Session["mobile"] = txtmobile.Text;
+                    Session["userid"] = dt.Rows[0]["userid"].ToString();
+                    Session["password"] = dt.Rows[0]["password"].ToString();
+                    Session["Usertype"] = dt.Rows[0]["User_Type"].ToString();
+                    Response.Redirect("AdminModule/Deshboard.aspx");
+                }
+                else if (usertype == 2)
+                {
+                    Session["mobile"] = txtmobile.Text;
+                    Session["userid"] = dt.Rows[0]["userid"].ToString();
+                    Session["password"] = dt.Rows[0]["password"].ToString();
+                    Response.Redirect("SallerPanel/Dashboard.aspx");
+                }
 
+
+
+                else
+                {
+                    Response.Write("<script>alert('Userid Or Password Wrong');</script>");
+                }
+
+                    }
+            else
+                    {
+                        Response.Write("<script>alert('Userid Or Password Wrong');</script>");
+                    }
+
+                }
+            }
         }
-    }
-}

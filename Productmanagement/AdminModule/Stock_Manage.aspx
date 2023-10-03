@@ -61,15 +61,15 @@
                                 <div id="exampleModalLive1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLiveLabel1" style="font-weight: 600; font-size: 15px">Add Quntity  </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="modal-header" style="background-color:#343a40">
+                                                <h5 class="modal-title" id="exampleModalLiveLabel1" style="font-weight: 600; font-size: 15px;color:white">Add Quntity  </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-sm-10 mx-auto">
                                                         <div class="form-group">
-                                                            <label class="floating-label" for="password">Product Code :</label>
+                                                            <label class="floating-label" for="password"> Stock Id :</label>
                                                             <asp:TextBox ID="txtcgst" oninput="myFunction()" class="form-control" placeholder="" runat="server"></asp:TextBox>
                                                         </div>
 
@@ -105,9 +105,9 @@
                                 <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLiveLabel" style="font-weight: 600; font-size: 15px">Add  Product Size :</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <div class="modal-header" style="background-color:#343a40">
+                                                <h5 class="modal-title" id="exampleModalLiveLabel" style="font-weight: 600; font-size: 15px;color:white">Add  Product Size :</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
@@ -140,14 +140,14 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLiveLabel2" style="font-weight: 600; font-size: 15px">Add  Product Size :</h5>
+                                                <h5 class="modal-title" id="exampleModalLiveLabel2" style="font-weight: 600; font-size: 15px">Add  Quntity :</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-sm-10 mx-auto">
                                                         <div class="form-group">
-                                                            <label class="floating-label" for="password">Product Code  :</label>
+                                                            <label class="floating-label" for="password">Stock ID :</label>
                                                             <asp:TextBox ID="txtproductcode" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -333,6 +333,7 @@
                                 <asp:TemplateField HeaderText="Product Code">
                                     <ItemTemplate>
                                         <asp:Label ID="lblproductcode" runat="server" Text='<%# Eval("ProductCode") %>'></asp:Label>
+                                     
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="10%" />
                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="10%" />
@@ -348,7 +349,7 @@
                                 <asp:TemplateField HeaderText="Quantity">
                                     <ItemTemplate>
                                         <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>'></asp:Label>
-                                        <asp:LinkButton ID="btn_quntity" CommandName="quntityupdate" CommandArgument='<%# Eval("ProductCode") %>' runat="server"><i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="btn_quntity" CommandName="quntityupdate" CommandArgument='<%# Eval("stid") %>' runat="server"><i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></asp:LinkButton>
                                         &nbsp; &nbsp;    
 
                                     </ItemTemplate>

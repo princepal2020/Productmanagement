@@ -1,4 +1,4 @@
-﻿using Productmanagement.App_Code;
+﻿ using Productmanagement.App_Code;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,10 +67,17 @@ namespace Productmanagement.AdminModule
                 }
                 else if (e.CommandName == "Delete")
                 {
-
+                  
                     lblmassege.Text = e.CommandArgument.ToString();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#exampleModalLive2').modal();", true);
 
+                }
+                else if (e.CommandName == "AddStock")
+                {
+                    Label Product_Name = (Label)e.Item.FindControl("lblproduct_name");
+                    Label Brand_Name = (Label)e.Item.FindControl("lblbrand");
+                    string product_code = e.CommandArgument.ToString();
+                    Response.Redirect("Stock_Manage.aspx?productscode=" + product_code + "&product_name=" + Product_Name.Text + "&brand_name=" + Brand_Name.Text);
                 }
             }
             catch (Exception ex)

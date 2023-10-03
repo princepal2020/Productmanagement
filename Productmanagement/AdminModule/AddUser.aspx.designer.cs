@@ -60,6 +60,15 @@ namespace Productmanagement.AdminModule
         protected global::System.Web.UI.WebControls.TextBox txtmobileno;
 
         /// <summary>
+        /// dd_gender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dd_gender;
+
+        /// <summary>
         /// txtaddharno control.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace Productmanagement.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtgstinno;
-
-        /// <summary>
-        /// txtpassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtpassword;
 
         /// <summary>
         /// txtdob control.
@@ -148,6 +148,15 @@ namespace Productmanagement.AdminModule
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcity;
+
+        /// <summary>
+        /// txtpassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtpassword;
 
         /// <summary>
         /// txtaddress control.

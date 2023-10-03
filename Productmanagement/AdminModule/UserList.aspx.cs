@@ -54,7 +54,7 @@ namespace Productmanagement.AdminModule
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "myModal", "$('#exampleModalLive1').modal();", true);
 
-            DataTable dt = clsUser.GetSingleUser(Userid.Text);
+            DataTable dt = clsUser.GetSingleUser(Userid.Text, "Userid");
             if (dt != null && dt.Rows.Count > 0)
             {
 

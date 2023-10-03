@@ -1,4 +1,5 @@
-﻿using Productmanagement.App_Code;
+﻿
+using Productmanagement.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,11 +15,11 @@ namespace Productmanagement.AdminModule
     {
         ClsUser clsUser = new ClsUser();
         Clsdefferentmethode clsdefferent = new Clsdefferentmethode();
-        //string id = Session["id"].ToString();
-        string id = "0";
+        
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             if (!IsPostBack)
             {
                 GetSteteUsertype();
@@ -28,7 +29,7 @@ namespace Productmanagement.AdminModule
                 btn_submit.Visible = false;
                 btn_Update.Visible = true;
                 string userid = Request.QueryString["userid"].ToString();
-                DataTable dt = clsUser.GetSingleUser(userid);
+                DataTable dt = clsUser.GetSingleUser(userid, "Userid");
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     txtname.Text = dt.Rows[0]["UserName"].ToString(); ;
@@ -43,16 +44,19 @@ namespace Productmanagement.AdminModule
                     txtbrachdetails.Text = dt.Rows[0]["Store_Name"].ToString();
                     txtcity.Text = dt.Rows[0]["city"].ToString(); ;
                     txtaddress.Text = dt.Rows[0]["Address"].ToString();
+                    ViewState["UserImage"]= dt.Rows[0]["User_image"].ToString();
                 }
             }
         }
 
         public void GetSteteUsertype()
         {
+            
             try
             {
+                string usertyp = Session["Usertype"].ToString();
                 DataTable dt = clsUser.GetState();
-                DataTable dt1 = clsUser.GetUsertype();
+                DataTable dt1 = clsUser.GetUsertype(usertyp);
                 if ((dt != null && dt.Rows.Count > 0) && (dt1 != null && dt1.Rows.Count > 0))
                 {
                     dd_state.DataSource = dt;
@@ -61,7 +65,7 @@ namespace Productmanagement.AdminModule
                     dd_state.DataBind();
                     dd_usertype.DataSource = dt1;
                     dd_usertype.DataValueField = "id";
-                    dd_usertype.DataTextField = "User_Type";
+                    dd_usertype.DataTextField = "UserType_Name";
                     dd_usertype.DataBind();
                     dd_usertype.Items.Insert(0, new ListItem { Text = "-- Select UserType --", Value = "0" });
                     dd_state.Items.Insert(0, new ListItem { Text = "-- Select State --", Value = "0" });
@@ -75,7 +79,7 @@ namespace Productmanagement.AdminModule
                     dd_state.DataBind();
                     dd_usertype.DataSource = dt1;
                     dd_usertype.DataValueField = "id";
-                    dd_usertype.DataTextField = "User_Type";
+                    dd_usertype.DataTextField = "UserType_Name";
                     dd_usertype.DataBind();
                     dd_usertype.Items.Insert(0, new ListItem { Text = "-- Select UserType --", Value = "0" });
                     dd_state.Items.Insert(0, new ListItem { Text = "-- Select State --", Value = "0" });
@@ -99,7 +103,7 @@ namespace Productmanagement.AdminModule
                     dd_district.DataTextField = "District_Name";
                     dd_district.DataValueField = "District_Id";
                     dd_district.DataBind();
-                    dd_district.Items.Insert(0, new ListItem { Text = "--Select District --", Value = "0" });
+                   
                 }
                 else
                 {
@@ -107,9 +111,10 @@ namespace Productmanagement.AdminModule
                     dd_district.DataTextField = "District_Name";
                     dd_district.DataValueField = "District_Id";
                     dd_district.DataBind();
-                    dd_district.Items.Insert(0, new ListItem { Text = "--Select District --", Value = "0" });
+                   
 
                 }
+                dd_district.Items.Insert(0, new ListItem { Text = "--Select District --", Value = "0" });
 
             }
             catch (Exception ex)
@@ -122,6 +127,7 @@ namespace Productmanagement.AdminModule
         {
             try
             {
+                string id = Session["userid"].ToString();
                 Random random = new Random();
                 string userid = DateTime.Now.ToString("ddMMyyyy") + random.Next(10000, 99999).ToString();
                 int minsize = 45 * 1024; int maxsize = 300 * 1024;
@@ -227,7 +233,7 @@ namespace Productmanagement.AdminModule
 
                 if (count == 0 && statuscount == 0)
                 {
-                    int result = clsUser.AddUSer(userid, txtname.Text, txtmobileno.Text, txtemail.Text, txtcompanyname.Text, txtpassword.Text, dd_usertype.SelectedValue, txtaddress.Text, txtaddharno.Text, txtpanno.Text, txtgstinno.Text, useriame, adharfont, pancardimage, txtstorename.Text, txtbrachdetails.Text, txtdob.Text, id, dd_state.SelectedValue, dd_district.SelectedValue, txtcity.Text, adharback);
+                    int result = clsUser.AddUSer(userid, txtname.Text, txtmobileno.Text, txtemail.Text, txtcompanyname.Text, txtpassword.Text, dd_usertype.SelectedValue, txtaddress.Text, txtaddharno.Text, txtpanno.Text, txtgstinno.Text, useriame, adharfont, pancardimage, txtstorename.Text, txtbrachdetails.Text, txtdob.Text, id, dd_state.SelectedValue, dd_district.SelectedValue, txtcity.Text, adharback,dd_gender.SelectedItem.Text);
                     if (result > 0)
                     {
                         txtmassage.InnerText = "User has been  add success";
@@ -254,6 +260,7 @@ namespace Productmanagement.AdminModule
 
         protected void btn_Update_Click(object sender, EventArgs e)
         {
+            string id = Session["id"].ToString();
             int minsize = 45 * 1024; int maxsize = 300 * 1024;
             bool status = true; int count = 0; int statuscount = 0;
             string useriame = "", adharfont = "", adharback = "", pancardimage = "";
@@ -280,7 +287,7 @@ namespace Productmanagement.AdminModule
             }
             else
             {
-
+                useriame = ViewState["UserImage"].ToString();
             }
             if (fileadharfont.HasFile)
             {
@@ -355,7 +362,7 @@ namespace Productmanagement.AdminModule
 
             }
             string userid = Request.QueryString["userid"].ToString();
-            int result = clsUser.AddUpdate(userid,txtname.Text,txtmobileno.Text,txtemail.Text,txtemail.Text,txtpassword.Text,dd_usertype.SelectedValue,txtaddress.Text,txtaddharno.Text,txtpanno.Text,txtgstinno.Text,useriame,adharfont,pancardimage,txtstorename.Text,txtbrachdetails.Text,txtdob.Text,id,dd_state.SelectedValue,dd_district.SelectedValue,txtcity.Text,adharback);
+            int result = clsUser.AddUpdate(userid,txtname.Text,txtmobileno.Text,txtemail.Text,txtemail.Text,txtpassword.Text,dd_usertype.SelectedValue,txtaddress.Text,txtaddharno.Text,txtpanno.Text,txtgstinno.Text,useriame,adharfont,pancardimage,txtstorename.Text,txtbrachdetails.Text,txtdob.Text,id,dd_state.SelectedValue,dd_district.SelectedValue,txtcity.Text,adharback,dd_gender.SelectedItem.Text);
             if (result > 0)
             {
 

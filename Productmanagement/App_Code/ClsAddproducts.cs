@@ -11,9 +11,11 @@ namespace Productmanagement.App_Code
 {
     public class ClsAddproducts : ClsConnectionString
     {
+        string commandtype;
 
         public int Deleteproducts(string product_code)
         {
+
             try
             {
                 string strcon = getconnection();
@@ -65,14 +67,13 @@ namespace Productmanagement.App_Code
                 return 0;
             }
         }
-
-        public DataTable GetProductcode(string productcode)
+        public DataTable GetDataProductCodeBase( string productcode)
         {
             try
             {
                 string strcon = getconnection();
                 SqlConnection con = new SqlConnection(strcon);
-                SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGetUpdate", con);
+                SqlCommand cmd = new SqlCommand(commandtype, con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Product_code", productcode);
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -94,60 +95,98 @@ namespace Productmanagement.App_Code
                 return null;
             }
         }
-        public DataTable GetProductimagewithcode(string productcode)
+        public DataTable GetProductcode(string productcode)
         {
             try
             {
-                string strcon = getconnection();
-                SqlConnection con = new SqlConnection(strcon);
-                SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGetUpdate", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Product_code", productcode);
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adp.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    return null;
-                }
+                commandtype = "Sp_TblAddProductImagesGetUpdate";
+                DataTable dt = GetDataProductCodeBase(productcode);
+                return dt;
+            }
+            catch(Exception ex)
+            {
+               
+                return null;
+            }
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGetUpdate", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
 
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
 
+        }
+        public DataTable GetProductimagewithcode(string productcode)
+        {
+
+            try
+            {
+                commandtype = "Sp_TblAddProductImagesGetUpdate";
+                DataTable dt = GetDataProductCodeBase(productcode);
+                return dt;
             }
             catch (Exception ex)
             {
+
                 return null;
             }
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGetUpdate", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
+
+
         }
         public DataTable Getaddpimagejoin()
         {
             try
             {
-                string strcon = getconnection();
-                SqlConnection con = new SqlConnection(strcon);
-                SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGet", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                adp.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    return dt;
-                }
-                else
-                {
-                    return null;
-                }
-
-
+                commandname = "Sp_TblAddProductImagesGet";
+                DataTable dt = GetWithoutParameter();
+                return dt;
             }
             catch (Exception ex)
             {
                 return null;
             }
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("Sp_TblAddProductImagesGet", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
         }
         public int AddProduct(string barnd_name, string product_Name, string product_code, string category, string subcategory, string hsncode, string serialno, string Product_details, string product_barcode, string userid)
         {
@@ -207,16 +246,98 @@ namespace Productmanagement.App_Code
         }
         public DataTable Searching(string tsxt)
         {
-            string strcon = getconnection();
-            SqlConnection con = new SqlConnection(strcon);
-            SqlCommand cmd = new SqlCommand("Sp_Searching", con);
-            
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Search", tsxt);
-            SqlDataAdapter adp = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adp.Fill(dt);
-            return dt;
+
+            try
+            {
+                commandtype = "Sp_Searching";
+                DataTable dt = GetSigleParameter(tsxt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public DataTable SallerProductList()
+        {
+            try
+            {
+                commandname = "Sp_GetSallerProductList";
+                DataTable dt = GetWithoutParameter();
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("Sp_GetSallerProductList", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
+        }
+        public DataTable SallerSearching(string tsxt)
+        {
+            try
+            {
+                commandtype = "Sp_GetSallerProductListSearching";
+                DataTable dt = GetSigleParameter(tsxt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            //try
+            //{
+            //    string strcon = getconnection();
+            //    SqlConnection con = new SqlConnection(strcon);
+            //    SqlCommand cmd = new SqlCommand("SP_CategoryGet", con);
+            //    cmd.CommandType = CommandType.StoredProcedure;
+            //    SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            //    DataTable dt = new DataTable();
+            //    adp.Fill(dt);
+            //    return dt;  
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    return null;
+            //}
+
+        }
+        public DataTable GetSigleParameter(string tsxt)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand(commandtype, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Search", tsxt);
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adp.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
 

@@ -167,6 +167,7 @@
     <Content Include="AdminModule\assets\images\ticket\p3.jpg" />
     <Content Include="AdminModule\assets\images\ticket\p4.jpg" />
     <Content Include="AdminModule\assets\images\ticket\p5.jpg" />
+    <Content Include="AdminModule\assets\images\user.jpg" />
     <Content Include="AdminModule\assets\images\user\avatar-1.jpg" />
     <Content Include="AdminModule\assets\images\user\avatar-2.jpg" />
     <Content Include="AdminModule\assets\images\user\avatar-3.jpg" />
@@ -230,7 +231,11 @@
     <Content Include="AdminModule\assets\js\vendor-all.min.js" />
     <Content Include="AdminModule\Deshboard.aspx" />
     <Content Include="AdminModule\assets\images\giphy.gif" />
+    <Content Include="assets\img\icons8-approve-48 %281%29.png" />
+    <Content Include="AdminModule\OrderList.aspx" />
+    <Content Include="AdminModule\ProductAssign.aspx" />
     <Content Include="AdminModule\ProductsList.aspx" />
+    <Content Include="AdminModule\Profile.aspx" />
     <Content Include="AdminModule\Stock_Manage.aspx" />
     <Content Include="AdminModule\UserList.aspx" />
     <Content Include="assets\css\all.css" />
@@ -242,6 +247,7 @@
     <Content Include="assets\img\forgot-password-office-dark.jpeg" />
     <Content Include="assets\img\forgot-password-office.jpeg" />
     <Content Include="assets\img\github.svg" />
+    <Content Include="assets\img\icons8-cancel-48.png" />
     <Content Include="assets\img\login-office-dark.jpeg" />
     <Content Include="assets\img\login-office.jpeg" />
     <Content Include="assets\img\top-view-perfectly-ordered-fitness-items.jpg" />
@@ -252,8 +258,15 @@
     <Content Include="assets\js\focus-trap.js" />
     <Content Include="assets\js\init-alpine.js" />
     <Content Include="Default.aspx" />
-    <Content Include="Forgetpasssword.aspx" />
     <Content Include="assets\css\tailwind.min.css" />
+    <Content Include="SallerPanel\CustomerList.aspx" />
+    <Content Include="SallerPanel\Dashboard.aspx" />
+    <Content Include="SallerPanel\OrderList.aspx" />
+    <Content Include="SallerPanel\ProductList.aspx" />
+    <Content Include="SallerPanel\ProductSellList.aspx" />
+    <Content Include="SallerPanel\SallerProfile.aspx" />
+    <Content Include="SallerPanel\SellerStock.aspx" />
+    <Content Include="style.css" />
     <Content Include="Web.config" />
     <Content Include="Forgetpassword.aspx" />
   </ItemGroup>
@@ -279,12 +292,33 @@
     <Compile Include="AdminModule\Deshboard.aspx.designer.cs">
       <DependentUpon>Deshboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminModule\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminModule\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminModule\ProductAssign.aspx.cs">
+      <DependentUpon>ProductAssign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminModule\ProductAssign.aspx.designer.cs">
+      <DependentUpon>ProductAssign.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminModule\ProductsList.aspx.cs">
       <DependentUpon>ProductsList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminModule\ProductsList.aspx.designer.cs">
       <DependentUpon>ProductsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminModule\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminModule\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminModule\Stock_Manage.aspx.cs">
       <DependentUpon>Stock_Manage.aspx</DependentUpon>
@@ -305,6 +339,7 @@
     <Compile Include="App_Code\ClsConnectionString.cs" />
     <Compile Include="App_Code\Clsdefferentmethode.cs" />
     <Compile Include="App_Code\ClsLogin.cs" />
+    <Compile Include="App_Code\ClsOrder.cs" />
     <Compile Include="App_Code\ClsStocksmanage.cs" />
     <Compile Include="App_Code\ClsUser.cs" />
     <Content Include="App_Code\Searching.cs" />
@@ -315,14 +350,65 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forgetpasssword.aspx.cs">
-      <DependentUpon>Forgetpasssword.aspx</DependentUpon>
+    <Compile Include="Modal\District.cs" />
+    <Compile Include="Modal\State.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SallerPanel\CustomerList.aspx.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forgetpasssword.aspx.designer.cs">
-      <DependentUpon>Forgetpasssword.aspx</DependentUpon>
+    <Compile Include="SallerPanel\CustomerList.aspx.designer.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SallerPanel\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\ProductList.aspx.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\ProductList.aspx.designer.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\ProductSellList.aspx.cs">
+      <DependentUpon>ProductSellList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\ProductSellList.aspx.designer.cs">
+      <DependentUpon>ProductSellList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\SallerProfile.aspx.cs">
+      <DependentUpon>SallerProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\SallerProfile.aspx.designer.cs">
+      <DependentUpon>SallerProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\SallerMaster.Master.cs">
+      <DependentUpon>SallerMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\SallerMaster.Master.designer.cs">
+      <DependentUpon>SallerMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SallerPanel\SellerStock.aspx.cs">
+      <DependentUpon>SellerStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SallerPanel\SellerStock.aspx.designer.cs">
+      <DependentUpon>SellerStock.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -378,6 +464,7 @@
     <Content Include="AdminModule\assets\json\citynames.json" />
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
+    <Content Include="SallerPanel\SallerMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -386,10 +473,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminModule\ImagePayment\" />
     <Folder Include="AdminModule\Images\" />
     <Folder Include="AdminModule\Productsimage\" />
     <Folder Include="AdminModule\Userimage\" />
-    <Folder Include="Modal\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

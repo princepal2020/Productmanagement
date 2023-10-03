@@ -14,9 +14,9 @@
                                 <h5>Add User</h5>
                             </div>
                             <div class="col-sm-5 d-flex justify-content-end">
-                                <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive1" style="font-weight: 600;">Add Category<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>&nbsp; &nbsp;    
+<%--                                <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive1" style="font-weight: 600;">Add Category<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>&nbsp; &nbsp;    
                              <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#exampleModalLive" style="font-weight: 600">Add Sub Category<i class="far fa-plus-square fa-lg" style="margin-left: 5px"></i></button>
-                            </div>
+                          --%>  </div>
                         </div>
 
                     </div>
@@ -60,6 +60,17 @@
                                         <asp:TextBox ID="txtmobileno" MaxLength="10" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">State  :</label>
+
+                                        <asp:DropDownList ID="dd_gender"   class="mb-3 form-control" runat="server">
+                                           <asp:ListItem Value="0">--Select Gender --</asp:ListItem>
+                                           <asp:ListItem Value="1">Male</asp:ListItem>
+                                           <asp:ListItem Value="2">Female</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Aadhar No :</label>
@@ -78,12 +89,7 @@
                                         <asp:TextBox ID="txtgstinno" class="form-control" onkeypress="return number(event)" placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
-                                   <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label class="floating-label" for="password">Password:</label>
-                                        <asp:TextBox ID="txtpassword" class="form-control" TextMode="Password"  placeholder="" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
+                                   
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">Date Of Birth:</label>
@@ -121,10 +127,17 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
+                         
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="floating-label" for="password">City :</label>
                                         <asp:TextBox ID="txtcity" class="form-control"  placeholder="" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                       <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="password">Password:</label>
+                                        <asp:TextBox ID="txtpassword" class="form-control" TextMode="Password"  placeholder="" runat="server"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
